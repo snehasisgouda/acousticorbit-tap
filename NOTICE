@@ -1,0 +1,54 @@
+# NOTICE for the Acoustic Orbit system-audio tap
+#
+# The complete corresponding source of this driver — this file, LICENSE,
+# LCRTap.c, Info.plist, build.sh and readlayout.swift — is published at
+#   https://github.com/snehasisgouda/acousticorbit-tap
+# under the GNU GPL version 3 (owner's decision, 21 Oct 2026; first-run
+# audit F9). The same files ship inside Acoustic Orbit next to the
+# compiled driver. This file and LICENSE record the origin and the
+# licence and are not legal advice.
+
+The system-audio tap that ships inside Acoustic Orbit
+(AcousticOrbitTap.driver, the "Acoustic Orbit" audio device; until
+driver version 3, SpeakerLCRTap.driver and the "Speaker LCR" device) is
+a modified version of BlackHole.
+
+  BlackHole: a macOS virtual audio loopback driver
+  Copyright (C) 2019 Existential Audio Inc. (BlackHole was created by
+  Devin Roth)
+  https://github.com/ExistentialAudio/BlackHole
+  Licensed under the GNU General Public License, version 3. The full
+  licence text is in LICENSE, next to this file.
+
+LCRTap.c started as BlackHole's BlackHole.c; its original copyright
+header is kept. The upstream version it was taken from is not recorded
+in this repository. This modified driver is not BlackHole, does not use
+the BlackHole name for its device, and is not made or endorsed by
+Existential Audio Inc.
+
+Modifications (Acoustic Orbit, 2026):
+
+1. Build identity (build.sh defines, driver version 4, 20 Oct 2026):
+   driver name AcousticOrbitTap, device and manufacturer name
+   "Acoustic Orbit", the hidden second device "Acoustic Orbit Mirror",
+   16 channels, bundle identifier com.acousticorbit.tap (bundle
+   AcousticOrbitTap.driver, executable AcousticOrbitTap), no icon;
+   device UIDs AcousticOrbitTap_UID and AcousticOrbitTap_2_UID, model
+   UID AcousticOrbitTap_ModelUID. Linked against Accelerate. Versions 1
+   to 3 were built as driver name SpeakerLCRTap, device and manufacturer
+   "Speaker LCR", bundle identifier com.snehasis.speakerlcr.tap, UIDs
+   SpeakerLCRTap_UID and SpeakerLCRTap_2_UID.
+2. A published latency for lip-sync: kAudioDevicePropertyLatency can be
+   set by the app (at most 192000 frames) and is applied through a
+   device configuration change (ChangeAction_SetLatency), so video
+   players delay the picture to match the sound. The driver itself adds
+   no delay.
+3. A custom property 'lclt' that carries the same latency figure as a
+   string, listed in kAudioObjectPropertyCustomPropertyInfoList.
+4. Each of the driver's two device objects keeps its own latency value
+   (they used to share one).
+5. A 16-channel build reports the Atmos 9.1.6 layout as its preferred
+   channel layout: sixteen channel descriptions in the 9.1.6 order
+   (since driver version 3, 20 Oct 2026; version 2 reported the single
+   Atmos 9.1.6 tag, 18 Oct 2026); other channel counts keep BlackHole's
+   channel descriptions.

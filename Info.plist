@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key><string>English</string>
+	<key>CFBundleExecutable</key><string>AcousticOrbitTap</string>
+	<key>CFBundleIdentifier</key><string>com.acousticorbit.tap</string>
+	<key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
+	<key>CFBundleName</key><string>Acoustic Orbit Tap</string>
+	<key>CFBundlePackageType</key><string>BNDL</string>
+	<key>CFBundleShortVersionString</key><string>1.0.0</string>
+	<key>CFBundleVersion</key><string>4</string>
+	<key>CFPlugInFactories</key>
+	<dict><key>27e46646-cc73-4be2-aff0-3fa296746a3d</key><string>BlackHole_Create</string></dict>
+	<key>CFPlugInTypes</key>
+	<dict><key>443ABAB8-E7B3-491A-B985-BEB9187030DB</key><array><string>27e46646-cc73-4be2-aff0-3fa296746a3d</string></array></dict>
+</dict>
+</plist>
